@@ -14,10 +14,10 @@ react-rainie-router provides a <Router /> component that conditionally renders i
 ## Features
 
 - It is only 2k!, We only use our frequently used functions. Including Route Mathing, Nesting, default routing, Link, dynamic routing...
-- We can Asynchronously request some data from  `listenBefore` before routing jump to another. And `listenBefore` should return a promise object.
+- We can delay or prevent routing navigate by `listenBefore` before routing jump to another. And `listenBefore` should return a promise object.
 - It's no limit to the number of  `Router` component nested other component.
 - Support coding Spliting by `getComponent` from  `Route` component.
-
+- It does not depend on `history`, but using html5 history API.
 
 ## Docs & Help
 
@@ -61,7 +61,7 @@ function Home({url, title}) {
 
 function Account({url, matches, name}) {
     return (
-        <section className="error">
+        <section className="account">
             <h2>Account: {matches.id}</h2>
             <p>my name is : {name}</p>
             <pre>current link: {url}</pre>
