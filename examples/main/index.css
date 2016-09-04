@@ -1,0 +1,29 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.home, .account {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+h2 {
+    color: #fff;
+}
+
+.home {
+    background: #00BCD4;
+}
+
+.account {
+    background: #68cf52;
+}
