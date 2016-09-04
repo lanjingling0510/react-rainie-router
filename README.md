@@ -1,5 +1,5 @@
 # react-rainie-router
--------
+
 [![Travis][build-badge]][build] [![npm package][npm-badge]][npm] [![Coveralls][coveralls-badge]][coveralls]
 
 **It has a similar and simple features for react-router,react-rainie-router is a fast, 2kb alternative to react-router.**
@@ -90,3 +90,12 @@ start is by checking our [open issues](https://github.com/lanjingling0510/react-
 [submit a new issues](https://github.com/lanjingling0510/react-rainie-router/issues/new?labels=bug) or
 [feature request](https://github.com/lanjingling0510/react-rainie-router/issues/new?labels=enhancement),
 participate in discussions, upvote or downvote the issues you like or dislike.
+
+
+
+[npm-badge]: https://img.shields.io/npm/v/react-rainie-router.svg?style=flat-square
+[npm]: https://www.npmjs.com/package/react-rainie-router
+[build-badge]: https://img.shields.io/travis/lanjingling0510/react-rainie-router/master.svg?style=flat-square
+[build]: https://travis-ci.org/lanjingling0510/react-rainie-router
+[coveralls-badge]: https://img.shields.io/coveralls/lanjingling0510/react-rainie-router.svg?style=flat-square
+[coveralls]: https://coveralls.io/github/lanjingling0510/react-rainie-router

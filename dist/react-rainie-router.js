@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('react')) :
   typeof define === 'function' && define.amd ? define(['react'], factory) :
-  (global.preactRouter = factory(global.React));
+  (global.reactRainieRouter = factory(global.React));
 }(this, (function (React) { 'use strict';
 
 React = 'default' in React ? React['default'] : React;
@@ -230,9 +230,7 @@ function route(url) {
         }
         setUrl(url, replace ? 'replace' : 'push');
         return routeTo(url);
-    }).catch(function (e) {
-        return console.log(e);
-    });
+    }).catch(function () {});
 }
 
 function routeTo(url) {
@@ -323,24 +321,27 @@ var Router = function (_React$Component) {
         var url = this.state.url;
 
         var routeElement = null;
-        var active = React.Children.toArray(children).sort(pathRankSort).filter(function (child) {
-            var props = child.props,
+
+        var childrenElements = React.Children.toArray(children).sort(pathRankSort);
+
+        for (var i = 0; i < childrenElements.length; i++) {
+            var child = childrenElements[i],
+                props = child.props,
                 path = props.path,
                 matches = exec(url, path, props);
             if (matches) {
-                routeElement = React.cloneElement(child, _extends({}, props, { url: url, matches: matches }));
-                return true;
-            }
-        });
+                routeElement = React.cloneElement(child, _extends({}, child.props, { url: url, matches: matches }));
 
-        var current = active[0] || null;
-        this._didRoute = !!current;
+                this._didRoute = true;
+                break;
+            }
+        }
 
         var previous = this.previousUrl;
         if (url !== previous) {
             this.previousUrl = url;
             if (typeof onChange === 'function') {
-                onChange({ router: this, url: url, previous: previous, active: active, current: current });
+                onChange({ url: url, previous: previous, router: this });
             }
         }
         return routeElement;
@@ -368,4 +369,4 @@ Router.Link = Link;
 return Router;
 
 })));
-//# sourceMappingURL=preact-router.js.map
+//# sourceMappingURL=react-rainie-router.js.map
