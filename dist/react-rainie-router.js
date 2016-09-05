@@ -357,7 +357,7 @@ var Link = function (_ref) {
     return React.createElement(
         'a',
         _extends({}, props, {
-            className: exec(props.href || props.to, getCurrentUrl()) ? activeClassName : '',
+            className: exec(props.href || props.to, getCurrentUrl()) ? activeClassName + ' ' + props.className : props.className,
             onClick: handleLinkClick }),
         children,
         '>'
