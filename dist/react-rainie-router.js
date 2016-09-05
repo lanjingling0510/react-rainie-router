@@ -247,7 +247,7 @@ function routeFromLink(node) {
     // only valid elements
     if (!node || !node.getAttribute) return;
 
-    var href = node.getAttribute('href'),
+    var href = node.getAttribute('href') || node.getAttribute('to'),
         target = node.getAttribute('target');
 
     // ignore links with targets and non-path URLs
