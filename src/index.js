@@ -171,7 +171,10 @@ const Link = ({
 }) => (
     <a
         {...props}
-        className={exec(props.href || props.to, getCurrentUrl()) ? activeClassName : ''}
+        className={
+            exec(props.href || props.to, getCurrentUrl()) ?
+             `${activeClassName} ${props.className}` : props.className
+         }
         onClick={handleLinkClick}>{children}></a>
 );
 
