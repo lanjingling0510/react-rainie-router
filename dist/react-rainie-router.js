@@ -352,11 +352,15 @@ var Router = function (_React$Component) {
 
 var Link = function (_ref) {
     var children = _ref.children;
-    var props = objectWithoutProperties(_ref, ['children']);
+    var activeClassName = _ref.activeClassName;
+    var props = objectWithoutProperties(_ref, ['children', 'activeClassName']);
     return React.createElement(
         'a',
-        _extends({}, props, { onClick: handleLinkClick }),
-        children
+        _extends({}, props, {
+            className: exec(props.href || props.to, getCurrentUrl()) ? activeClassName : '',
+            onClick: handleLinkClick }),
+        children,
+        '>'
     );
 };
 
