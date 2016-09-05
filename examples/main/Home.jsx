@@ -7,7 +7,7 @@ export default function Home({url, title}) {
         <section className="home">
             <h2>Welcome to my {title}</h2>
             <p>current link: {url}</p>
-            <Link href="/account/123">go account</Link>
+            <Link href="/layout/account/123">go account</Link>
         </section>
     );
 }

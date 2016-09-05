@@ -62,7 +62,7 @@ function routeFromLink(node) {
     if (!node || !node.getAttribute)
         return;
 
-    let href = node.getAttribute('href'),
+    let href = node.getAttribute('href') || node.getAttribute('to'),
         target = node.getAttribute('target');
 
     // ignore links with targets and non-path URLs

@@ -9,7 +9,7 @@ export default function Account({url, matches, name}) {
             <p>my ID is : {matches.id}</p>
             <p>my name is : {name}</p>
             <pre>current link: {url}</pre>
-            <Link href="/">go homepage</Link>
+            <Link href="/layout/">go homepage</Link>
         </section>
     );
 }
