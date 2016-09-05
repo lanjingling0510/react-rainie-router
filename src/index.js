@@ -166,9 +166,13 @@ class Router extends React.Component {
 
 const Link = ({
     children,
+    activeClassName,
     ...props
 }) => (
-    <a {...props} onClick={handleLinkClick}>{children}</a>
+    <a
+        {...props}
+        className={exec(props.href || props.to, getCurrentUrl()) ? activeClassName : ''}
+        onClick={handleLinkClick}>{children}></a>
 );
 
 Router.listenBefore = listenBefore;

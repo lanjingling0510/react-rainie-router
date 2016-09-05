@@ -24,6 +24,10 @@ h2 {
     background: #00BCD4;
 }
 
+.home .active {
+    color: red;
+}
+
 .account {
     background: #68cf52;
 }

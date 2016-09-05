@@ -7,14 +7,15 @@ import Layout from './Layout';
 /** Stateless app */
 const App = () => (
 	<div className="app">
-		<Router>
+		<Router
+			url="/login">
 			<Login path="/login" />
 			<Layout
-				path="/layout/:path?/:param?"
+				default
 				className="content">
 				<Router>
 					<Route
-						path="/layout/"
+						path="/"
 						title="homepage"
 						getComponent={() => {
 							return new Promise(function(resolve, reject) {
@@ -25,7 +26,7 @@ const App = () => (
 							});
 						}} />
 					<Route
-						path="/layout/account/:id"
+						path="/account/:id"
 						name="rainie"
 						getComponent={() => {
 							return new Promise(function(resolve, reject) {
