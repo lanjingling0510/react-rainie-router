@@ -175,7 +175,7 @@ const Link = ({
             exec(props.href || props.to, getCurrentUrl()) ?
              `${activeClassName} ${props.className}` : props.className
          }
-        onClick={handleLinkClick}>{children}></a>
+        onClick={handleLinkClick}>{children}</a>
 );
 
 Router.listenBefore = listenBefore;

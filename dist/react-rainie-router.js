@@ -359,8 +359,7 @@ var Link = function (_ref) {
         _extends({}, props, {
             className: exec(props.href || props.to, getCurrentUrl()) ? activeClassName + ' ' + props.className : props.className,
             onClick: handleLinkClick }),
-        children,
-        '>'
+        children
     );
 };
 
