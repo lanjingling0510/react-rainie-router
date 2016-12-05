@@ -77,6 +77,14 @@ var classCallCheck = function (instance, Constructor) {
   }
 };
 
+
+
+
+
+
+
+
+
 var _extends = Object.assign || function (target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i];
@@ -89,6 +97,31 @@ var _extends = Object.assign || function (target) {
   }
 
   return target;
+};
+
+var get = function get(object, property, receiver) {
+  if (object === null) object = Function.prototype;
+  var desc = Object.getOwnPropertyDescriptor(object, property);
+
+  if (desc === undefined) {
+    var parent = Object.getPrototypeOf(object);
+
+    if (parent === null) {
+      return undefined;
+    } else {
+      return get(parent, property, receiver);
+    }
+  } else if ("value" in desc) {
+    return desc.value;
+  } else {
+    var getter = desc.get;
+
+    if (getter === undefined) {
+      return undefined;
+    }
+
+    return getter.call(receiver);
+  }
 };
 
 var inherits = function (subClass, superClass) {
@@ -106,6 +139,14 @@ var inherits = function (subClass, superClass) {
   });
   if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 };
+
+
+
+
+
+
+
+
 
 var objectWithoutProperties = function (obj, keys) {
   var target = {};
@@ -125,6 +166,30 @@ var possibleConstructorReturn = function (self, call) {
   }
 
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
+};
+
+
+
+var set = function set(object, property, value, receiver) {
+  var desc = Object.getOwnPropertyDescriptor(object, property);
+
+  if (desc === undefined) {
+    var parent = Object.getPrototypeOf(object);
+
+    if (parent !== null) {
+      set(parent, property, value, receiver);
+    }
+  } else if ("value" in desc && desc.writable) {
+    desc.value = value;
+  } else {
+    var setter = desc.set;
+
+    if (setter !== undefined) {
+      setter.call(receiver, value);
+    }
+  }
+
+  return value;
 };
 
 function isPromise(obj) {
@@ -257,7 +322,22 @@ function routeFromLink(node) {
     return route(href);
 }
 
-function handleLinkClick(e) {
+function handleLinkClick(delay) {
+    if (typeof delay === 'number') {
+        return function (e) {
+            prevent(e);
+            // access the event properties in an asynchronous way
+            e.persist();
+            setTimeout(function () {
+                return _handleLinkClick(e);
+            }, delay);
+        };
+    }
+
+    return _handleLinkClick;
+}
+
+function _handleLinkClick(e) {
     if (e.button !== 0) return;
     routeFromLink(e.currentTarget || e.target || this);
     return prevent(e);
@@ -353,12 +433,13 @@ var Router = function (_React$Component) {
 var Link = function (_ref) {
     var children = _ref.children;
     var activeClassName = _ref.activeClassName;
-    var props = objectWithoutProperties(_ref, ['children', 'activeClassName']);
+    var delay = _ref.delay;
+    var props = objectWithoutProperties(_ref, ['children', 'activeClassName', 'delay']);
     return React.createElement(
         'a',
         _extends({}, props, {
             className: exec(props.href || props.to, getCurrentUrl()) ? activeClassName + ' ' + props.className : props.className,
-            onClick: handleLinkClick }),
+            onClick: handleLinkClick(delay) }),
         children
     );
 };

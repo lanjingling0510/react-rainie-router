@@ -1,6 +1,6 @@
 {
   "name": "react-rainie-router",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "amdName": "reactRainieRouter",
   "main": "dist/react-rainie-router.js",
@@ -51,6 +51,7 @@
     "react-addons-test-utils": "^15.3.1",
     "react-dom": "^15.3.1",
     "rf-release": "^0.4.0",
+    "rollup": "^0.36.4",
     "rollup-plugin-babel": "^2.6.1",
     "rollup-plugin-commonjs": "^3.3.1",
     "rollup-plugin-json": "^2.0.1",
