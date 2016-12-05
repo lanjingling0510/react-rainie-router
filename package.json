@@ -1,6 +1,6 @@
 {
   "name": "react-rainie-router",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "",
   "amdName": "reactRainieRouter",
   "main": "dist/react-rainie-router.js",
@@ -12,7 +12,7 @@
     "minify": "uglifyjs $npm_package_main -cm -o $npm_package_minified_main -p relative --in-source-map ${npm_package_main}.map --source-map ${npm_package_minified_main}.map",
     "size": "size=$(gzip-size $npm_package_minified_main | pretty-bytes) && echo \"gzip size: $size\"",
     "start": "webpack-dev-server",
-    "release": "node_modules/.bin/release",
+    "release": "npm run build && node_modules/.bin/release",
     "preview-release": "changelog -t preview -s",
     "mocha": "./node_modules/.bin/mocha --compilers js:babel-core/register --require ./test/helper.js --recursive",
     "test": "./node_modules/.bin/nyc npm run mocha",

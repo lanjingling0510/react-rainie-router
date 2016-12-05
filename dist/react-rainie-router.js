@@ -323,23 +323,25 @@ function routeFromLink(node) {
 }
 
 function handleLinkClick(delay) {
-    if (typeof delay === 'number') {
-        return function (e) {
-            prevent(e);
-            // access the event properties in an asynchronous way
-            e.persist();
-            setTimeout(function () {
-                return _handleLinkClick(e);
-            }, delay);
-        };
-    }
-
-    return _handleLinkClick;
+    return function (e) {
+        return _handleLinkClick(e, delay);
+    };
 }
 
-function _handleLinkClick(e) {
+function _handleLinkClick(e, delay) {
+    var target = e.currentTarget || e.target || this;
     if (e.button !== 0) return;
-    routeFromLink(e.currentTarget || e.target || this);
+
+    if (typeof delay === 'number') {
+        // access the event properties in an asynchronous way
+        e.persist();
+        setTimeout(function () {
+            return routeFromLink(target);
+        }, delay);
+        return prevent(e);
+    }
+
+    routeFromLink(target);
     return prevent(e);
 }
 
