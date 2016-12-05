@@ -7,8 +7,7 @@ import Layout from './Layout';
 /** Stateless app */
 const App = () => (
 	<div className="app">
-		<Router
-			url="/login">
+		<Router>
 			<Login path="/login" />
 			<Layout
 				default

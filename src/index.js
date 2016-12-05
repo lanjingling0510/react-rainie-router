@@ -73,7 +73,20 @@ function routeFromLink(node) {
     return route(href);
 }
 
-function handleLinkClick(e) {
+function handleLinkClick(delay) {
+    if (typeof delay === 'number') {
+        return (e) => {
+            prevent(e);
+            // access the event properties in an asynchronous way
+            e.persist();
+            setTimeout(() => _handleLinkClick(e), delay);
+        };
+    }
+
+    return _handleLinkClick;
+}
+
+function _handleLinkClick(e) {
     if (e.button !== 0)
         return;
     routeFromLink(e.currentTarget || e.target || this);
@@ -167,6 +180,7 @@ class Router extends React.Component {
 const Link = ({
     children,
     activeClassName,
+    delay,
     ...props
 }) => (
     <a
@@ -175,7 +189,7 @@ const Link = ({
             exec(props.href || props.to, getCurrentUrl()) ?
              `${activeClassName} ${props.className}` : props.className
          }
-        onClick={handleLinkClick}>{children}</a>
+        onClick={handleLinkClick(delay)}>{children}</a>
 );
 
 Router.listenBefore = listenBefore;
